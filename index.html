@@ -33,20 +33,22 @@ footer{padding:35px 0;border-top:1px solid var(--line);color:#777;font-size:10px
 @media(max-width:520px){.wrap{width:calc(100% - 36px)}header{padding:0 18px}.hero{min-height:660px}.hero-content{padding-top:80px}.hero p{font-size:13px}.products{grid-template-columns:1fr}.product-img{height:360px}.fabric-image{height:330px}.contact-card{padding:23px}.footer-row{align-items:flex-start;flex-direction:column}.style-board img{height:260px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.cinematic-intro{display:none}.reveal{opacity:1;transform:none}}
 
-/* HAVOC original print-design catalogue */
+/* HAVOC printed tee mockup gallery */
 .print-catalog{background:#080808;border-block:1px solid #292929}
-.print-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
-.print-card{border:1px solid #303030;background:#111;overflow:hidden;transition:.3s}
-.print-card:hover{transform:translateY(-5px);border-color:#c6a76b}
-.print-art{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:18px;text-align:center;background:radial-gradient(circle at 50% 35%,#3b3b3b,#101010 72%)}
-.print-art:before{content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.18)}
-.print-art:after{content:"";position:absolute;width:170px;height:170px;border:1px solid rgba(255,255,255,.12);border-radius:50%}
-.print-art svg{width:100%;height:100%;position:relative;z-index:1}
-.print-meta{padding:14px}.print-meta small{font-size:8px;letter-spacing:.18em;color:#c6a76b}.print-meta h3{font-size:12px;letter-spacing:.09em;text-transform:uppercase;margin:8px 0 11px;min-height:28px}.print-meta a{font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #777;padding-bottom:4px}
+.print-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.print-card{border:1px solid #303030;background:#101010;overflow:hidden;transition:transform .3s,border-color .3s}
+.print-card:hover{transform:translateY(-6px);border-color:#c6a76b}
+.print-art{height:340px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:12px;background:radial-gradient(ellipse at 50% 38%,#292929,#090909 75%)}
+.print-art svg{width:100%;height:100%;position:relative;z-index:1;filter:drop-shadow(0 16px 16px rgba(0,0,0,.5))}
+.print-meta{padding:15px 16px 17px}.print-meta small{font-size:8px;letter-spacing:.18em;color:#c6a76b}
+.print-meta h3{font-size:13px;letter-spacing:.09em;text-transform:uppercase;margin:8px 0 12px;min-height:16px}
+.print-meta a{font-size:9px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid #777;padding-bottom:4px}
 .print-intro{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:15px 0;margin-bottom:22px;border-block:1px solid #292929;color:#aaa;font-size:9px;letter-spacing:.18em}
 .print-intro b{color:#c6a76b;font-weight:500}
-@media(max-width:900px){.print-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.print-art{height:190px}}
-@media(max-width:560px){.print-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.print-art{height:165px;padding:10px}.print-meta{padding:11px}.print-meta h3{font-size:10px}}
+.print-filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.print-filters span{font-size:8px;letter-spacing:.12em;text-transform:uppercase;border:1px solid #393939;color:#bbb;padding:8px 10px}
+@media(max-width:900px){.print-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.print-art{height:300px}}
+@media(max-width:600px){.print-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.print-art{height:230px;padding:5px}.print-meta{padding:11px}.print-meta h3{font-size:10px}}
 </style></head><body>
 <div class="cinematic-intro" id="cinematicIntro"><div class="intro-mark">HAVOC</div><div class="intro-line">SILENCE THE NOISE, START THE HAVOC.</div><div class="intro-progress"><span></span></div></div>
 <header><a class="logo" href="#home">HAV<span>O</span>C</a><nav id="nav"><a href="#collection">Collection</a><a href="#fabric">Our Fabric</a><a href="#wholesale">Wholesale</a><a href="#about">About</a><a href="#contact">Contact</a></nav><a class="nav-cta" href="#contact">Enquire Now</a><button class="menu" aria-label="Open menu" onclick="document.getElementById('nav').classList.toggle('open')">☰</button></header>
@@ -75,13 +77,35 @@ const printIdeas=[["AFTER HOURS","CITY NEVER SLEEPS"],["NO LIMITS","BUILT DIFFER
 const printGrid=document.getElementById('printGrid');
 if(printGrid){printIdeas.forEach((item,i)=>{
  const n=String(i+1).padStart(2,'0');
- const palettes=[['#f3f0e8','#101010'],['#d7c6a2','#101010'],['#d9d9d9','#171717'],['#c6a76b','#111111']];
+ const palettes=[
+  {shirt:'#171717',ink:'#f2eee5',accent:'#b52c32'},
+  {shirt:'#e8e4da',ink:'#171717',accent:'#a72d35'},
+  {shirt:'#333536',ink:'#f1eee8',accent:'#c6a76b'},
+  {shirt:'#111820',ink:'#f0e9dc',accent:'#d04a3e'},
+  {shirt:'#d8d3c9',ink:'#222222',accent:'#a88b60'}
+ ];
  const p=palettes[i%palettes.length];
- const rotation=(i%7-3)*4;
- const motif=i%5===0?'✳':i%5===1?'✦':i%5===2?'◈':i%5===3?'＋':'✕';
- const art='<svg viewBox="0 0 300 220" role="img" aria-label="'+item[0]+' graphic concept"><g fill="none" stroke="'+p[0]+'" stroke-width="1.4" opacity=".85"><circle cx="150" cy="105" r="'+(58+i%4*8)+'"/><path d="M35 110H265M150 18V202"/><path d="M65 45L235 175M235 45L65 175" opacity=".4"/></g><text x="150" y="78" text-anchor="middle" fill="'+p[0]+'" font-size="12" letter-spacing="5" font-family="Arial" font-weight="700">HAVOC / '+n+'</text><text x="150" y="125" text-anchor="middle" fill="'+p[0]+'" font-size="'+(item[0].length>13?22:29)+'" font-family="Arial" font-weight="900" letter-spacing="-1" transform="rotate('+rotation+' 150 115)">'+item[0]+'</text><text x="150" y="151" text-anchor="middle" fill="'+p[0]+'" font-size="9" letter-spacing="2.3" font-family="Arial">'+item[1]+'</text><text x="150" y="183" text-anchor="middle" fill="'+p[0]+'" font-size="19">'+motif+'</text></svg>';
+ const motif=i%8;
+ const graphic=motif===0
+  ? '<circle cx="150" cy="144" r="39" fill="none" stroke="'+p.accent+'" stroke-width="3"/><path d="M150 95L160 132L198 144L160 156L150 193L140 156L102 144L140 132Z" fill="none" stroke="'+p.ink+'" stroke-width="2"/>'
+  : motif===1
+  ? '<path d="M112 171Q94 125 126 105Q150 90 174 105Q206 125 188 171Q150 194 112 171Z" fill="none" stroke="'+p.accent+'" stroke-width="3"/><path d="M125 139Q150 112 175 139M132 158Q150 174 168 158" fill="none" stroke="'+p.ink+'" stroke-width="2"/>'
+  : motif===2
+  ? '<path d="M150 100L190 144L150 188L110 144Z" fill="none" stroke="'+p.accent+'" stroke-width="3"/><path d="M150 112V176M118 144H182" stroke="'+p.ink+'" stroke-width="2"/>'
+  : motif===3
+  ? '<path d="M105 175L150 105L195 175Z" fill="none" stroke="'+p.ink+'" stroke-width="3"/><circle cx="150" cy="151" r="16" fill="none" stroke="'+p.accent+'" stroke-width="3"/>'
+  : motif===4
+  ? '<path d="M110 120Q150 85 190 120Q175 155 150 182Q125 155 110 120Z" fill="none" stroke="'+p.accent+'" stroke-width="3"/><path d="M150 115V177M125 136L175 136" stroke="'+p.ink+'" stroke-width="2"/>'
+  : motif===5
+  ? '<circle cx="150" cy="145" r="43" fill="none" stroke="'+p.ink+'" stroke-width="2" stroke-dasharray="4 5"/><path d="M118 145H182M150 113V177" stroke="'+p.accent+'" stroke-width="3"/>'
+  : motif===6
+  ? '<path d="M116 112L184 178M184 112L116 178" stroke="'+p.accent+'" stroke-width="5"/><circle cx="150" cy="145" r="47" fill="none" stroke="'+p.ink+'" stroke-width="2"/>'
+  : '<path d="M115 170Q150 93 185 170M125 155Q150 116 175 155" fill="none" stroke="'+p.accent+'" stroke-width="3"/><circle cx="150" cy="145" r="18" fill="none" stroke="'+p.ink+'" stroke-width="2"/>';
+ const title=item[0].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+ const subtitle=item[1].replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+ const svg='<svg viewBox="0 0 300 300" role="img" aria-label="HAVOC '+title+' printed T-shirt mockup"><defs><linearGradient id="fabric'+n+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+p.shirt+'"/><stop offset=".48" stop-color="'+p.shirt+'"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="shine'+n+'" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#fff" stop-opacity=".04"/><stop offset=".5" stop-color="#fff" stop-opacity=".13"/><stop offset="1" stop-color="#000" stop-opacity=".2"/></linearGradient></defs><ellipse cx="150" cy="275" rx="82" ry="10" fill="#000" opacity=".45"/><path d="M112 35L130 26Q150 39 170 26L188 35L218 52L246 103L213 119L195 86L195 258Q150 272 105 258L105 86L87 119L54 103L82 52Z" fill="url(#fabric'+n+')" stroke="#777" stroke-opacity=".35" stroke-width="1.3"/><path d="M130 27Q150 53 170 27" fill="none" stroke="#777" stroke-opacity=".7" stroke-width="4"/><path d="M130 29Q150 48 170 29" fill="none" stroke="#080808" stroke-width="2"/><path d="M105 87L116 96M195 87L184 96M105 258Q150 268 195 258" fill="none" stroke="#aaa" stroke-opacity=".24"/><path d="M84 54L106 88L95 110M216 54L194 88L205 110" fill="none" stroke="#fff" stroke-opacity=".09" stroke-width="2"/><path d="M115 85Q123 145 116 239M185 85Q177 145 184 239" fill="none" stroke="#fff" stroke-opacity=".055" stroke-width="5"/><path d="M108 205Q150 215 192 205" fill="none" stroke="#fff" stroke-opacity=".045" stroke-width="3"/><rect x="105" y="75" width="90" height="184" fill="url(#shine'+n+')" opacity=".5"/><g transform="translate(0 0)">'+graphic+'<text x="150" y="122" text-anchor="middle" fill="'+p.ink+'" font-family="Arial,sans-serif" font-size="'+(title.length>13?10:13)+'" font-weight="900" letter-spacing="1.4">'+title+'</text><path d="M119 198H181" stroke="'+p.accent+'" stroke-width="1.5"/><text x="150" y="212" text-anchor="middle" fill="'+p.ink+'" font-family="Arial,sans-serif" font-size="6.5" letter-spacing="1.2">'+subtitle.toUpperCase().slice(0,25)+'</text><text x="150" y="232" text-anchor="middle" fill="'+p.ink+'" font-family="Arial,sans-serif" font-size="7" letter-spacing="2">HAVOC / '+n+'</text></g></svg>';
  const card=document.createElement('article');card.className='print-card';
- card.innerHTML='<div class="print-art" style="background:radial-gradient(circle at 50% 40%,'+p[1]+',#080808 78%)">'+art+'</div><div class="print-meta"><small>PRINT CONCEPT / '+n+'</small><h3>'+item[0]+'</h3><a href="https://wa.me/94704239470?text='+encodeURIComponent('Hi HAVOC, I am interested in print concept '+n+' - '+item[0]+'. Please share details.')+'" target="_blank" rel="noopener">Enquire about this design ↗</a></div>';
+ card.innerHTML='<div class="print-art">'+svg+'</div><div class="print-meta"><small>PRINT MOCKUP / '+n+'</small><h3>'+title+'</h3><a href="https://wa.me/94704239470?text='+encodeURIComponent('Hi HAVOC, I am interested in printed T-shirt mockup '+n+' - '+item[0]+'. Please share details.')+'" target="_blank" rel="noopener">Enquire about this design ↗</a></div>';
  printGrid.appendChild(card);
 });}
 document.getElementById('year').textContent=new Date().getFullYear();document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>document.getElementById('nav').classList.remove('open')));const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));setTimeout(()=>{const i=document.getElementById('cinematicIntro');if(i)i.setAttribute('aria-hidden','true')},3400);</script>
